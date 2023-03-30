@@ -1,31 +1,49 @@
 // https://leetcode.com/problems/intersection-of-two-arrays/
+// Q-349
 
 import java.util.Arrays;
-public class Intersection {
-	public static void main(String[] args) {
-		int[] arr1 = { 4, 9, 5 };
-		int[] arr2 = { 9, 4, 9, 8, 4 };
-		System.out.println(Arrays.toString(intersection(arr1, arr2)));
-	}
+class Intersection {
+    public static void main(String[] args) {
+    	int[] num1 = {1, 2, 2, 1};
+    	int[] num2 = {2, 2};
+    }
 
-	static int[] intersection(int[] nums1, int[] nums2) {
+    static int[] count(int nums[]) {
+        // count = { 0, 0, 0, 0, 0, 0, 0, 0 ....... till index 1000}
+        int count[]=new int[1001];
+        for(int num:nums) {
+            count[num]++;
+        }
         
+        return count;
+    }
+    
+    static int[] intersection(int[] nums1, int[] nums2) {
+        
+        if(nums1==null||nums2==null) {
+        	return new int[]{};
+        }
+        
+        // [0, 2, 2, 0, 0, ........]
+        int countNums1[]=count(nums1);
+        // [0, 0, 2, 0, 0, ........]
+        int countNums2[]=count(nums2);
         int count = 0;
-        int[] newArr = new int[nums1.length + nums2.length];
         
-        for (int i = 0; i < nums1.length; i++) {
-        	for (int j = 0; j < nums2.length; j++) {
-        		if (nums1[i] == nums2[j]) {
-        			
-        			if (newArr[count] != nums1[i]) {
-        				newArr[count] = nums1[i];
-        			}
-
-        			count++;
-        		}
-        	}
+        for(int i=0;i<countNums1.length;i++) {
+            if(countNums1[i] > 0 && countNums2[i] > 0)
+                count++;
         }
 
-        return newArr;
+        int ans[]=new int[count];
+        int k=0;
+        
+        for(int i=0;i<countNums1.length;i++) {
+            if(countNums1[i] > 0 && countNums2[i] > 0) {
+            	ans[k++]=i;
+            }
+        }
+        
+        return ans;
     }
 }

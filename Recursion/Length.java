@@ -3,7 +3,7 @@
 public class Length {
 	public static void main(String[] args){
 		// System.out.println(lengthOfString("GEEKSFORGEEKS", 0));
-		System.out.println(recLen("aabd"));
+		System.out.println(len("aabd"));
 	}	
 	
 	static int lengthOfString(String str, int len) {
@@ -15,14 +15,14 @@ public class Length {
 
 	}
 
-    static int recLen(String str) {
+    static int len(String str) {
  
         if (str.equals("")) {
             return 0;
         }
 
         else
-            return recLen(str.substring(1)) + 1;
+            return len(str.substring(1)) + 1;
     }
 
 }

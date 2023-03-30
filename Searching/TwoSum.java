@@ -10,7 +10,9 @@ public class TwoSum {
         
         int start = 0;
         int end = (numbers.length - 1);
+
         while(numbers[start] + numbers[end] != target) {
+        	
         	if (numbers[start] + numbers[end] < target) {
         		start++;
         	} else if (numbers[start] + numbers[end] > target) {
@@ -22,3 +24,33 @@ public class TwoSum {
         return ans;
     }
 }
+
+// 4 Nov 2022.
+
+// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+// Leetcode(medium)
+
+// class Solution {
+//     public int[] twoSum(int[] numbers, int target) {
+//         int start = 0;
+//         int end = numbers.length-1;
+        
+//         while(start < end) {
+//             int sum = numbers[start] + numbers[end];
+            
+//             if(target == sum) {
+//                 return new int[] {start + 1  , end + 1};
+//             }
+            
+//             if(target > sum) {
+//                 start ++;
+//             }
+            
+//             else {
+//                 end--;
+//             }
+//         }
+        
+//         return null;
+//     }
+// }
