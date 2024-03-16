@@ -11,9 +11,9 @@ public class Test {
 
 		// charAt(i)
 		// for(int i = 0; i < s1.length(); i++) {
-			
 		// 	System.out.println(s1.charAt(i));
-		// }
+		// } 	
+		
 		
 		// The substring begins with the character at the specified index and extends
 		// to the end of this string. And index of substring starts from 1 and not from 0.
@@ -65,5 +65,35 @@ public class Test {
 
 		// startsWith()
 		// startsWith(String prefix, int strt_pos)
+
+		// -------------- StringBuilder --------------------
+
+		StringBuilder builder = new StringBuilder();
+
+		for(int  i = 0; i < 26; i++) {
+			char ch = (char)('a' + i);
+			builder.append(" " + ch);
+		}
+
+		// System.out.println(builder);
+
+	    // ----------- Methods -----------
+
+		String name = "Sourabh Bisht";
+		
+		// toCharArray()
+		System.out.println(Arrays.toString(name.toCharArray())); 
+
+		// Does not change the original "name".
+		// toLowerCase()
+		System.out.println(name.toLowerCase());
+
+		System.out.println(name); // original "name
+
+		// Strip()
+		System.out.println("       Sourabh    ".strip());
+
+		// split().
+		System.out.println(Arrays.toString("This is a text".split(" ")));
 	}
 }

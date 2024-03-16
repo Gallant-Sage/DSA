@@ -1,40 +1,71 @@
+
 import java.util.Arrays;
+
 public class Merge {
 	public static void main(String[] args) {
-		int[] nums1 = { 1, 2, 3, 0, 0, 0 };
-		int[] nums2 = { 2, 5, 6 };
-		mergeArrays(nums1, 3, nums2, 3);
-		System.out.println(Arrays.toString(nums1));
+		
+		int[] arr = { 5, 4, 3, 2, 1 };
+		arr = mergeSort(arr);
+		System.out.println(Arrays.toString(arr));
 	}
 
-	static void mergeArrays(int[] nums1, int m, int[] nums2, int n) {
-        int i = m - 1;
-        int j = n - 1;
-        int k = m + n - 1;
+	static int[] mergeSort(int[] arr) {
 
-        while (i > - 1 && j > -1) {
-        	
-        	if(nums1[i] > nums2[j]) {
-        		nums1[k] = nums1[i];
-        		i--;
-        	} else {
-        		nums1[k] = nums2[j];
-        		j--;
-        	}
+		if(arr.length == 1) {
+			return arr;
+		}
 
-        	k--;
-        }
+		int mid = arr.length / 2;
+		int[] left = mergeSort(Arrays.copyOfRange(arr, 0, mid));
+		System.out.print("Left : " + Arrays.toString(left) + " ");
+		System.out.println();
+		int[] right = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));
+		System.out.print("Right : " + Arrays.toString(right) + " ");
 
-        while(i > -1) {
-        	nums1[k] = nums2[i];
-        	i--;
-        	k--;
-        }
+		return mergedArray(left, right);
+	}
 
-        while(j>-1) {
-            nums1[k]=nums2[j];
-            j--;
-            k--;
-        }
-    }
+	static int[] mergedArray(int[] first, int[] second) {
+		
+		int[] mix = new int[first.length + second.length];
+		
+		int i = 0;
+		int j = 0;
+		int k = 0;
+
+		while(i < first.length && j < second.length) {
+			
+			if (first[i] < second[j]) {
+				mix[k] = first[i];
+				i++;
+			}
+
+			else {
+				mix[k] = second[j];
+			    j++;
+			}
+
+			k++;
+		}
+
+		// It maybe possible that some elements are   
+		// remaining in any one of the two arrays.
+		// arr1 = [5, 3, 4], arr2 = [6, 8, 10, 19, 32]
+
+		while(i < first.length) {
+			mix[k] = first[i];
+			i++;
+			k++;
+		}
+
+		while(j < second.length) {
+			mix[k] = second[j];
+			j++;
+			k++;
+		}
+
+		return mix;
+
+	}
 }
+
